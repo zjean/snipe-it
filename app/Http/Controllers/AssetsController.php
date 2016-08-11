@@ -1675,4 +1675,37 @@ class AssetsController extends Controller
           return redirect()->to("hardware/bulk-checkout")->with('error', trans('admin/hardware/message.checkout.error'))->withErrors($errors);
       }
 
+
+    public function getBulkCheckin()
+    {
+        // Get the dropdown of statuses
+        $statusLabel_list = Helper::statusLabelList();
+
+        // Get deployed assets.
+        $assets = Asset::Deployed()->get();
+
+        $assets_list = Company::scopeCompanyables($assets, 'assets.company_id')->lists('detailed_name', 'id')->toArray();
+
+        return View::make('hardware/bulk-checkin')->with('statusLabel_list', $statusLabel_list)->with('assets_list', $assets_list);
+    }
+
+    public function postBulkCheckin(Request $request)
+    {
+
+      $this->validate($request, [
+        "selected_asset"   => 'required',
+         "status_id"   => 'required'
+      ]);
+
+      
+
+      if (!$errors) {
+        // Redirect to the new asset page
+          return redirect()->to("hardware")->with('success', trans('admin/hardware/message.checkout.success'));
+      }
+
+      // Redirect to the asset management page with error
+      return redirect()->to("hardware/bulk-checkout")->with('error', trans('admin/hardware/message.checkout.error'))->withErrors($errors);
+    }
+
 }

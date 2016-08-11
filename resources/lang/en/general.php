@@ -24,6 +24,7 @@
     'back'      			=> 'Back',
     'bad_data'      		=> 'Nothing found. Maybe bad data?',
     'bulk_checkout'  		=> 'Bulk Checkout',
+    'bulk_checkin'          => 'Bulk Checkin',
     'cancel'  				=> 'Cancel',
     'categories'			=> 'Categories',
     'category'				=> 'Category',

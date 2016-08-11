@@ -323,7 +323,7 @@ Route::group(
             ]
         );
 
-        # Bulk checkout / checkin
+        # Bulk checkout 
          Route::get( 'bulkcheckout',  [
                  'as' => 'hardware/bulkcheckout',
                  'middleware' => 'authorize:assets.checkout',
@@ -333,6 +333,18 @@ Route::group(
             'as' => 'hardware/bulkcheckout',
             'middleware' => 'authorize:assets.checkout',
             'uses' => 'AssetsController@postBulkCheckout'
+        ]);
+
+        # Bulk checkin
+         Route::get( 'bulkcheckin',  [
+                 'as' => 'hardware/bulkcheckin',
+                 'middleware' => 'authorize:assets.checkin',
+                 'uses' => 'AssetsController@getBulkCheckin'
+         ]);
+        Route::post( 'bulkcheckin',  [
+            'as' => 'hardware/bulkcheckin',
+            'middleware' => 'authorize:assets.checkin',
+            'uses' => 'AssetsController@postBulkCheckin'
         ]);
 
         # Asset Model Management

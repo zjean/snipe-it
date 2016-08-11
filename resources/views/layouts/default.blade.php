@@ -424,6 +424,11 @@
                         <a href="{{ route('hardware/bulkcheckout') }}">
                             {{ trans('general.bulk_checkout') }}</a>
                     </li>
+                    <li{!! (Request::is('hardware/bulkcheckin') ? ' class="active>"' : '') !!}>
+                        <small class="label pull-right bg-orange">{{ trans('general.new')  }}</small>
+                        <a href="{{ route('hardware/bulkcheckin') }}">
+                            {{ trans('general.bulk_checkin') }}</a>
+                    </li>
                     <li{!! (Request::is('hardware/models*') ? ' class="active"' : '') !!}><a href="{{ URL::to('hardware/models') }}">@lang('general.asset_models')</a></li>
                   <li><a href="{{ URL::to('admin/settings/categories') }}" {!! (Request::is('admin/settings/categories*') ? ' class="active"' : '') !!} >@lang('general.categories')</a></li>
                   <li{!! (Request::query('Deleted') ? ' class="active"' : '') !!}><a href="{{ URL::to('hardware?status=Deleted') }}">@lang('general.deleted')</a></li>
